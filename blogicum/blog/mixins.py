@@ -13,7 +13,8 @@ class CustomListMixin:
 
     def get_queryset(self):
         return (
-            Post.objects.select_related("category", "location", "author").annotate(
+            Post.objects.select_related("category", "location",
+                                        "author").annotate(
                 comment_count=Count("comments")
             )
         ).order_by("-pub_date")
